@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Folder</title>
+</head>
+<body>
+    <div class="create_folder">
+        <h1>Create a Folder Inside S3 Bucket</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Create Folder">
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <title>Delete File</title>
+</head>
+<body>
+    <div class="delete">
+        <h1>Delete Object From S3 bucket</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="List File/Folder">
+        </form><br>
+        <form action="delete" method="GET">
+            <!-- {% csrf_token %} -->
+            <label for="file_name">Select File: </label>
+            <select name="file_name" id="file_name">
+                {% for name in files%}
+                    <option value="{{name}}">{{name}}</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="submit" class="btn btn-primary" value="Delete">
+        </form>
+    </div>
+</body>
+</html>
+{%endblock%}

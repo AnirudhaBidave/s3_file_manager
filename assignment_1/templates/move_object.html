@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Object</title>
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}">  -->
+</head>
+<body>
+    <div class="move">
+        <h1>Move Object in between Bucket's</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="List File/Folder">
+        </form><br>
+        <form action="move_object" method="GET">
+            <label for="file_list">Select File: </label>
+            <select name="file" id="file_list">
+                {% for name in files %}
+                <option value="{{name}}">{{name}}</option>
+                {% endfor%}
+            </select><br><br>
+            <label for="dest_bucket">Destination Bucket: </label>
+            <select name="dest_bucket" id="dest_bucket">
+                {% for name in buckets %}
+                    <option value="{{name}}">{{name}}</option>
+                {% endfor%}
+            </select><br><br>
+            <input type="submit" class="btn btn-primary" value="Move">
+        </form>
+    </div>
+</body>
+</html>
+{%endblock%}

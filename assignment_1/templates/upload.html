@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}">  -->
+
+</head>
+<body>
+    <div class="upload">
+        <h1>Upload File in S3 Bucket</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="buckets">Selcet Bucket: </label>
+            <select name="bucket_name" id="buckets">
+                {% for name in bucket %}
+                    <option value="{{name}}">{{name}}</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="submit" class="btn btn-primary" value="List Folder">
+        </form><br>
+        <form action="upload" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="folder">Select Folder</label>
+            <select name="folder_name" id="folder">
+                <option value="">Select</option>
+                {% for name in folder %}
+                    <option value="{{name}}">{{name}}</optionif bucket_name is not None:>
+                {% endfor %}
+            </select><h6><i>Select folder if want to upload file in particular folder</i></h6>
+            <label for="file_name">Upload File: </label>
+            <input type="file" name="file_name" id="file_name"><br><br>
+            <input type="submit", class="btn btn-primary", value="Upload">
+        </form>
+    </div>
+</body>
+</html>
+{%endblock%}

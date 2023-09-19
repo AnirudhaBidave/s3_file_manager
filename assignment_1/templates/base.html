@@ -1,0 +1,53 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <link rel="shortcut icon" type="image/png" href="{% static 'amazon-s3.png' %}" >
+
+
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/s3bucket">Home</a>
+        <a href="/s3bucket/create">Create Bucket</a>
+        <a href="/s3bucket/list">Bucket List</a>
+        <div class="dropdown">
+          <button class="dropbtn">Create/Upload <i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content">
+            <a href="/s3bucket/create_folder">Create Folder</a>
+            <a href="/s3bucket/upload">Upload File</a>
+          </div>
+        </div> 
+        <!-- <a href="/s3bucket/upload">Upload File</a> -->
+        <div class="dropdown">
+          <button class="dropbtn">Delete <i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content">
+            <a href="/s3bucket/delete_bucket">Delete Bucket</a>
+            <a href="/s3bucket/delete">Delete Object</a>
+          </div>
+        </div> 
+        <div class="dropdown">
+          <button class="dropbtn">Copy/Move <i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content">
+            <a href="/s3bucket/copy_object">Copy Object</a>
+            <a href="/s3bucket/move_object">Move Object</a>
+          </div>
+        </div>
+      </div>
+        {% if messages %}
+        <div class="messages">
+        {% for message in messages %}
+          <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+              {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+        {% endif %}     
+      {%block content%}
+      
+      {%endblock%}
+</body>
+</html>
