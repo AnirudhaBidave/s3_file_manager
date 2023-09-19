@@ -23,8 +23,10 @@ def create_bucket(request):
             Bucket_Name =  form.cleaned_data['bucket_name']
             region = form.cleaned_data['Region']
             try:
-                if region is None:
-                    s3_client.create_bucket(Bucket=Bucket_Name)
+                if region == '':
+                    s3_client = boto3.client('s3', region_name='us-west-1')
+                    location = {'LocationConstraint': 'us-west-1'}
+                    s3_client.create_bucket(Bucket=Bucket_Name, CreateBucketConfiguration=location)
                 else:
                     s3_client = boto3.client('s3', region_name=region)
                     location = {'LocationConstraint': region}
